@@ -12,12 +12,15 @@ public class ProjectileLauncherController : MonoBehaviour
     [SerializeField] private float timeIntervalPoints = 0.01f;
     
     private float launchSpeed;
+    private bool isThrowed;
+
+    public bool IsThrowed { get { return isThrowed; } }
 
     private void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        if (mousePosition.x > transform.position.x)
+        if (mousePosition.x > transform.position.x || isThrowed)
         {
             lineRenderer.enabled = false;
             return;
@@ -28,6 +31,7 @@ public class ProjectileLauncherController : MonoBehaviour
             lineRenderer.enabled = false;
             rigidBody.bodyType = RigidbodyType2D.Dynamic;
             rigidBody.linearVelocity = launchSpeed * launchPoint.up;
+            isThrowed = true;
         } else if (Input.GetMouseButton(0))
         {
             Vector2 direction = new Vector2(transform.position.x - mousePosition.x, transform.position.y - mousePosition.y);
