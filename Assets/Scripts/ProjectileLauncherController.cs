@@ -15,6 +15,13 @@ public class ProjectileLauncherController : MonoBehaviour
 
     private void Update()
     {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (mousePosition.x > transform.position.x)
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log("Ball throwed");
@@ -23,13 +30,6 @@ public class ProjectileLauncherController : MonoBehaviour
             rigidBody.linearVelocity = launchSpeed * launchPoint.up;
         } else if (Input.GetMouseButton(0))
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            if (mousePosition.x > transform.position.x)
-            {
-                lineRenderer.enabled = false;
-                return;
-            }
             Vector2 direction = new Vector2(transform.position.x - mousePosition.x, transform.position.y - mousePosition.y);
             //Debug.Log(direction);
             launchSpeed = direction.magnitude * speedMultiplier;
