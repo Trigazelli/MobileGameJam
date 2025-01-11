@@ -21,7 +21,6 @@ public class PowerUp : MonoBehaviour
     {
         if (body.bodyType == RigidbodyType2D.Dynamic && !isSpeed && projectileLauncherController != null && projectileLauncherController.IsThrowed)
         {
-            Debug.Log("Speed");
             isSpeed = true;
             body.linearVelocity = new Vector2(speed, 0);
         }
