@@ -6,7 +6,8 @@ public class PowerUp : MonoBehaviour
 {
     public Rigidbody2D body;
     private bool isSpeed = false;
-    [SerializeField] ProjectileLauncherController projectileLauncherController;
+    [SerializeField] private ProjectileLauncherController projectileLauncherController;
+    [SerializeField] private float speed = 50f;
 
     private void Update()
     {
@@ -18,11 +19,14 @@ public class PowerUp : MonoBehaviour
 
     void Speed()
     {
-        if (body.bodyType == RigidbodyType2D.Dynamic && !isSpeed && projectileLauncherController.IsThrowed)
+        if (body.bodyType == RigidbodyType2D.Dynamic && !isSpeed && projectileLauncherController != null && projectileLauncherController.IsThrowed)
         {
-            Debug.Log("Speed");
             isSpeed = true;
-            body.linearVelocity = new Vector2(50, 0);
+            body.linearVelocity = new Vector2(speed, 0);
+        }
+        else if (projectileLauncherController == null)
+        {
+            Debug.LogError("ProjectileLauncherController n'est pas assigné.");
         }
     }
 }
