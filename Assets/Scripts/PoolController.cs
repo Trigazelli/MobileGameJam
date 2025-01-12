@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,9 @@ public class PoolController : MonoBehaviour
     [SerializeField] private List<GameObject> goPool = new();
 
     private float timer;
+    private ProjectileLauncherController currentBall;
+    private int currentBallIndex;
+    public float BallsLeft {get; private set;}
 
     private void Awake()
     {
@@ -25,12 +29,28 @@ public class PoolController : MonoBehaviour
 
     private void Start()
     {
+        BallsLeft = 0;
+        currentBallIndex = 0;
         foreach (GameObject go in goPool)
         {
-            go.transform.position = spawnPos.position;
             go.SetActive(false);
+            go.transform.position = spawnPos.position;
         }
-        goPool[0].SetActive(true);
+        currentBall = goPool[currentBallIndex].GetComponent<ProjectileLauncherController>();
+        goPool[currentBallIndex].SetActive(true);
+        currentBall.onDisable += ActivateNextBall;
+    }
+
+    private void ActivateNextBall()
+    {
+        BallsLeft -= 1;
+        currentBallIndex += 1;
+        if (currentBallIndex >= goPool.Count) return;
+        Debug.Log("activating next ball, index is " + currentBallIndex + ".");
+        currentBall.onDisable -= ActivateNextBall;
+        currentBall = goPool[currentBallIndex].GetComponent<ProjectileLauncherController>();
+        currentBall.onDisable += ActivateNextBall;
+        goPool[currentBallIndex].SetActive(true);
     }
 
     private GameObject GetPooledObject()

@@ -5,8 +5,7 @@ using Unity.VisualScripting;
 public class PowerUp : MonoBehaviour
 {
     public Rigidbody2D body;
-    private bool isSpeed = false;
-    [SerializeField] private ProjectileLauncherController projectileLauncherController;
+    private bool hasBeenPoweredUp = false;
     [SerializeField] private float speed = 50f;
 
     private void Update()
@@ -19,14 +18,9 @@ public class PowerUp : MonoBehaviour
 
     void Speed()
     {
-        if (body.bodyType == RigidbodyType2D.Dynamic && !isSpeed && projectileLauncherController != null && projectileLauncherController.IsThrowed)
-        {
-            isSpeed = true;
-            body.linearVelocity = new Vector2(speed, 0);
-        }
-        else if (projectileLauncherController == null)
-        {
-            Debug.LogError("ProjectileLauncherController n'est pas assigné.");
-        }
+        if (hasBeenPoweredUp) return;
+        Debug.Log("Powered up");
+        hasBeenPoweredUp = true;
+        body.linearVelocity += new Vector2(speed, 0);
     }
 }

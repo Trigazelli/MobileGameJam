@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -170,9 +170,11 @@ MonoBehaviour:
   launchPoint: {fileID: 5179987205738542493}
   speedMultiplier: 3
   rigidBody: {fileID: 3468642566999559056}
+  powerUp: {fileID: 809523403701973370}
   lineRenderer: {fileID: 1970559486469218265}
   linePoints: 175
   timeIntervalPoints: 0.01
+  timeToWaitBeforeDisabling: 1
 --- !u!120 &1970559486469218265
 LineRenderer:
   serializedVersion: 2
@@ -287,10 +289,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3457927591480819066}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b16856d26cc6c6841af0b141c9e50188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 3468642566999559056}
   projectileLauncherController: {fileID: 3618020478239862850}
+  speed: 20
