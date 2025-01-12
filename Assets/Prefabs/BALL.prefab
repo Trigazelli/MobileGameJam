@@ -169,6 +169,7 @@ MonoBehaviour:
   launchPoint: {fileID: 5179987205738542493}
   speedMultiplier: 3
   rigidBody: {fileID: 3468642566999559056}
+  powerUp: {fileID: 0}
   lineRenderer: {fileID: 1970559486469218265}
   linePoints: 175
   timeIntervalPoints: 0.01

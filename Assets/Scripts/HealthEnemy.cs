@@ -5,11 +5,18 @@ using UnityEngine.Events;
 public class HealthEnemy : MonoBehaviour
 {
     [SerializeField] private UnityEvent OnDie;
+    public bool IsAlive {  get; private set; }
     private int touchWalls = 0;
+
+    private void Awake()
+    {
+        IsAlive = true;
+    }
 
     private IEnumerator Die()
     {
         OnDie?.Invoke();
+        IsAlive = false;
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
     }

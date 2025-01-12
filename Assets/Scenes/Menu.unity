@@ -237,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 919377338}
-  level1SceneName: SampleScene
-  level2SceneName: Alexandre
+  level1SceneName: Level 1
+  level2SceneName: Level 2
   menuStartSceneName: Menu
 --- !u!1 &265123354
 GameObject:
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1336899241092420851, guid: 5bd5cfd61f3e6ab4c9f3ab7715338b2e, type: 3}
+  m_Sprite: {fileID: 5398283193359031274, guid: b01114f4d2086854d8110f6daba84613, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1336899241092420851, guid: 5bd5cfd61f3e6ab4c9f3ab7715338b2e, type: 3}
+  m_Sprite: {fileID: 5398283193359031274, guid: b01114f4d2086854d8110f6daba84613, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -788,7 +788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3980168229369012863, guid: 9897425bccd418a4fa8255e6d2f31e55, type: 3}
+  m_Sprite: {fileID: 3980168229369012863, guid: 1d625038d4739084b9e0e7ab02f003c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6258200454185170781, guid: 6815566a431373f409b48bdc33d38925, type: 3}
+  m_Sprite: {fileID: 6258200454185170781, guid: 7d0d739d7a47e154e8127093528a42a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5656868927070744920, guid: 34d584b07066aec4bb20f9d69fda779e, type: 3}
+  m_Sprite: {fileID: -5656868927070744920, guid: bee840e4b76395d4ebc8a3654ae5038a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

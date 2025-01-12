@@ -29,7 +29,7 @@ public class PoolController : MonoBehaviour
 
     private void Start()
     {
-        BallsLeft = 0;
+        BallsLeft = goPool.Count;
         currentBallIndex = 0;
         foreach (GameObject go in goPool)
         {
