@@ -17,6 +17,7 @@ public class PoolController : MonoBehaviour
     private float timer;
     private ProjectileLauncherController currentBall;
     private int currentBallIndex;
+    private bool lastBall;
     public float BallsLeft {get; private set;}
 
     private void Awake()
@@ -45,7 +46,8 @@ public class PoolController : MonoBehaviour
     {
         BallsLeft -= 1;
         currentBallIndex += 1;
-        if (currentBallIndex >= goPool.Count) return;
+        if (currentBallIndex >= goPool.Count || lastBall) return;
+        if (currentBallIndex == goPool.Count - 1) lastBall = true;
         Debug.Log("activating next ball, index is " + currentBallIndex + ".");
         currentBall.onDisable -= ActivateNextBall;
         currentBall = goPool[currentBallIndex].GetComponent<ProjectileLauncherController>();

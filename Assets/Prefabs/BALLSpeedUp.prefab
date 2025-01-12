@@ -153,7 +153,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &3618020478239862850
 MonoBehaviour:
@@ -295,5 +295,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 3468642566999559056}
-  projectileLauncherController: {fileID: 3618020478239862850}
   speed: 20

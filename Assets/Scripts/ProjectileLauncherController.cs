@@ -65,23 +65,15 @@ public class ProjectileLauncherController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rigidBody.linearVelocity == Vector2.zero && rigidBody.bodyType != RigidbodyType2D.Kinematic)
+        if (rigidBody.linearVelocity.magnitude < 0.1f && rigidBody.bodyType != RigidbodyType2D.Kinematic)
         {
             gameObject.SetActive(false);
-            //StartCoroutine(WaitAndDisable());
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        rigidBody.linearDamping = 1;
-    }
-
-    private IEnumerator WaitAndDisable()
-    {
-        Debug.Log("Disabling GameObject in " + timeToWaitBeforeDisabling + " seconds.");
-        yield return new WaitForSeconds(timeToWaitBeforeDisabling);
-        gameObject.SetActive(false);
+        rigidBody.linearDamping = 2;
     }
 
     private void DrawTrajectory()
