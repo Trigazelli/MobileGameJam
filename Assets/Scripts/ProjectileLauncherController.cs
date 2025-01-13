@@ -18,6 +18,7 @@ public class ProjectileLauncherController : MonoBehaviour
     [SerializeField] private float timeToWaitBeforeDisabling;
 
     public event Action onDisable;
+    public event Action onDie;
     
     private float launchSpeed;
     private bool isThrowed;
@@ -51,6 +52,7 @@ public class ProjectileLauncherController : MonoBehaviour
             lineRenderer.enabled = false;
             rigidBody.bodyType = RigidbodyType2D.Dynamic;
             rigidBody.linearVelocity = launchSpeed * launchPoint.up;
+            Gambling();
             isThrowed = true;
             if (powerUp != null) powerUp.enabled = true;
         } else if (Input.GetMouseButton(0))
@@ -91,6 +93,16 @@ public class ProjectileLauncherController : MonoBehaviour
             Vector3 point = new Vector3(x, y, 0);
             lineRenderer.SetPosition(i, origin + point);
             time += timeIntervalPoints;
+        }
+    }
+
+    private void Gambling()
+    {
+        int random = UnityEngine.Random.Range(0, 6);
+        if (random == 0)
+        {
+            rigidBody.linearVelocity = new Vector2(-30, 0);
+            onDie?.Invoke();
         }
     }
 }

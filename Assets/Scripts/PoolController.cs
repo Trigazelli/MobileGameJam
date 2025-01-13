@@ -10,7 +10,7 @@ public class PoolController : MonoBehaviour
 
     [SerializeField] private int numberOfGo;
     [SerializeField] private Transform spawnPos;
-
+    [SerializeField] private Ending ending;
 
     [SerializeField] private List<GameObject> goPool = new();
 
@@ -40,6 +40,12 @@ public class PoolController : MonoBehaviour
         currentBall = goPool[currentBallIndex].GetComponent<ProjectileLauncherController>();
         goPool[currentBallIndex].SetActive(true);
         currentBall.onDisable += ActivateNextBall;
+        currentBall.onDie += DieSuddenly;
+    }
+
+    private void DieSuddenly()
+    {
+        StartCoroutine(ending.Lose());
     }
 
     private void ActivateNextBall()
@@ -50,8 +56,10 @@ public class PoolController : MonoBehaviour
         if (currentBallIndex == goPool.Count - 1) lastBall = true;
         Debug.Log("activating next ball, index is " + currentBallIndex + ".");
         currentBall.onDisable -= ActivateNextBall;
+        currentBall.onDie -= DieSuddenly;
         currentBall = goPool[currentBallIndex].GetComponent<ProjectileLauncherController>();
         currentBall.onDisable += ActivateNextBall;
+        currentBall.onDie += DieSuddenly;
         goPool[currentBallIndex].SetActive(true);
     }
 

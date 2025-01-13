@@ -29,7 +29,7 @@ public class Ending : MonoBehaviour
         _Text.text = "Victoire !";
     }
 
-    IEnumerator Lose()
+    public IEnumerator Lose()
     {
         yield return new WaitForSeconds(2f);
         _EndUI.SetActive(true);
