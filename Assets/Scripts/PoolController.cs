@@ -55,12 +55,12 @@ public class PoolController : MonoBehaviour
         if (currentBallIndex >= goPool.Count || lastBall) return;
         if (currentBallIndex == goPool.Count - 1) lastBall = true;
         Debug.Log("activating next ball, index is " + currentBallIndex + ".");
+        goPool[currentBallIndex].SetActive(true);
         currentBall.onDisable -= ActivateNextBall;
         currentBall.onDie -= DieSuddenly;
         currentBall = goPool[currentBallIndex].GetComponent<ProjectileLauncherController>();
         currentBall.onDisable += ActivateNextBall;
         currentBall.onDie += DieSuddenly;
-        goPool[currentBallIndex].SetActive(true);
     }
 
     private GameObject GetPooledObject()
