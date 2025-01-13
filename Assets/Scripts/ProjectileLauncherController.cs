@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class ProjectileLauncherController : MonoBehaviour
@@ -5,16 +7,34 @@ public class ProjectileLauncherController : MonoBehaviour
     [SerializeField] private Transform launchPoint;
     [SerializeField] private float speedMultiplier;
     [SerializeField] private Rigidbody2D rigidBody;
+    [SerializeField] private PowerUp powerUp;
 
     [Header("Trajectory Display")]
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private int linePoints = 175;
     [SerializeField] private float timeIntervalPoints = 0.01f;
+
+    [Header("Disabling")]
+    [SerializeField] private float timeToWaitBeforeDisabling;
+
+    public event Action onDisable;
     
     private float launchSpeed;
     private bool isThrowed;
 
     public bool IsThrowed { get { return isThrowed; } }
+
+    private void Start()
+    {
+        isThrowed = false;
+        if (powerUp != null) powerUp.enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("getting disabled");
+        onDisable?.Invoke();
+    }
 
     private void Update()
     {
@@ -32,6 +52,7 @@ public class ProjectileLauncherController : MonoBehaviour
             rigidBody.bodyType = RigidbodyType2D.Dynamic;
             rigidBody.linearVelocity = launchSpeed * launchPoint.up;
             isThrowed = true;
+            if (powerUp != null) powerUp.enabled = true;
         } else if (Input.GetMouseButton(0))
         {
             Vector2 direction = new Vector2(transform.position.x - mousePosition.x, transform.position.y - mousePosition.y);
@@ -40,6 +61,19 @@ public class ProjectileLauncherController : MonoBehaviour
             transform.up = direction;
             DrawTrajectory();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (rigidBody.linearVelocity.magnitude < 0.1f && rigidBody.bodyType != RigidbodyType2D.Kinematic)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        rigidBody.linearDamping = 2;
     }
 
     private void DrawTrajectory()
